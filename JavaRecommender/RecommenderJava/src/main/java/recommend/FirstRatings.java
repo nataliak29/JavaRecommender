@@ -4,6 +4,7 @@ import java.util.*;
 import org.apache.commons.csv.*;
 
 public class FirstRatings {
+    
 
     public  ArrayList<Movie> loadMovies(String filename) {
         FileResource fr = new FileResource(filename);
@@ -34,22 +35,22 @@ public class FirstRatings {
         return listOfMovies;
     }
 
-    public  ArrayList<Rater> loadRaters(String filename) {
+    public  ArrayList<EfficientRater> loadRaters(String filename) {
         FileResource fr = new FileResource(filename);
-        ArrayList<Rater> listOfRaters = new ArrayList<Rater>();
+        ArrayList<EfficientRater> listOfRaters = new ArrayList<EfficientRater>();
         ArrayList<String> listOfRaterIDs = new ArrayList<String>();
         CSVParser parser = fr.getCSVParser();
         for (CSVRecord record : parser) {
             String raterID = record.get(0);
             String item = record.get(1);
             Double val = Double.valueOf(record.get(2));
-            Rater thisRater= new Rater(raterID);
+            EfficientRater thisRater= new EfficientRater(raterID);
 
             if (listOfRaterIDs.contains(raterID)) {
-                for (Rater r: listOfRaters) {
+                for (EfficientRater r: listOfRaters) {
                     if (r.getID().equals(raterID)) {
                     int raterIndex= listOfRaters.indexOf(r); 
-                    Rater rater= listOfRaters.get(raterIndex);      
+                    EfficientRater rater= listOfRaters.get(raterIndex);      
                     rater.addRating(item, val);
                     listOfRaters.set( raterIndex, rater);
                     }
@@ -128,7 +129,7 @@ public class FirstRatings {
     public void testLoadRaters() {
         
         int maxNumMoviesRated=0;
-        ArrayList<Rater> listOfRaters= new ArrayList<Rater>();
+        ArrayList<EfficientRater> listOfRaters= new ArrayList<EfficientRater>();
         //listOfRaters = loadRaters("data/ratings_short.csv");
         listOfRaters = loadRaters("data/ratings.csv");
 

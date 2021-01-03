@@ -3,7 +3,7 @@ import java.util.*;
 public class SecondRatings {
 
     private ArrayList<Movie> myMovies;
-    private ArrayList<Rater> myRaters;
+    private ArrayList<EfficientRater> myRaters;
     
     public SecondRatings() {
         // default constructor
@@ -28,12 +28,16 @@ public class SecondRatings {
     public double getAverageByID(String id, int minimalRaters) {
         int countRaters=0;
         double sumRating=0;
-        for (Rater r: myRaters) {
-            
-            if (r.getRating(id)!=-1) {
+        for ( EfficientRater r: myRaters) {
+            try {
+            if (  r.getRating(id)!=-1) {
                 sumRating+=r.getRating(id);
                 countRaters+=1;
             }
+        }
+        catch (Exception NullPointerException) {
+
+        }
         }
         double avg=sumRating/countRaters;
         if (countRaters>=minimalRaters) {
@@ -80,5 +84,9 @@ public class SecondRatings {
         }
         return "No such title found";
     }
+
+
+
+    
     
 }
