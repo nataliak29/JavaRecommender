@@ -5,26 +5,36 @@ import org.apache.commons.csv.*;
 
 public class FirstRatings {
 
-    public static ArrayList<Movie> loadMovies(String filename) {
+    public  ArrayList<Movie> loadMovies(String filename) {
         FileResource fr = new FileResource(filename);
         ArrayList<Movie> listOfMovies = new ArrayList<Movie>();
         CSVParser parser = fr.getCSVParser();
         for (CSVRecord record : parser) {
-            String anID = record.get(0);
-            String aTitle = record.get(1);
-            String aYear = record.get(2);
-            String theGenres = record.get(4);
-            String aDirector = record.get(5);
-            String aCountry = record.get(3);
-            String aPoster = record.get(7);
-            int theMinutes = Integer.parseInt(record.get(6));
-            Movie thisMovie= new Movie(anID, aTitle, aYear, theGenres, aDirector,aCountry, aPoster, theMinutes);
-            listOfMovies.add(thisMovie);
+            try {
+                String anID = record.get(0);          
+                String aTitle = record.get(1);
+                String aYear = record.get(2);
+                String theGenres = record.get(4);
+                String aDirector = record.get(5);
+                String aCountry = record.get(3);
+                String aPoster = record.get(7);
+                int theMinutes = Integer.parseInt(record.get(6));
+
+                Movie thisMovie = new Movie(anID, aTitle, aYear, theGenres, aDirector, aCountry, aPoster, theMinutes);
+                listOfMovies.add(thisMovie);
+            }
+            catch (Exception ArrayIndexOutOfBoundsException) {
+                String anID = record.get(0);          
+                String aTitle = record.get(1);
+                Movie thisMovie = new Movie(anID, aTitle, "0","n/a","n/a","n/a","n/a",0);
+                listOfMovies.add(thisMovie);
+
+            }
         }
         return listOfMovies;
     }
 
-    public static ArrayList<Rater> loadRaters(String filename) {
+    public  ArrayList<Rater> loadRaters(String filename) {
         FileResource fr = new FileResource(filename);
         ArrayList<Rater> listOfRaters = new ArrayList<Rater>();
         ArrayList<String> listOfRaterIDs = new ArrayList<String>();
@@ -54,7 +64,7 @@ public class FirstRatings {
         return listOfRaters;
     }
 
-    public static void testLoadMovies() {
+    public void testLoadMovies() {
         ArrayList<Movie> listOfMovies = new ArrayList<Movie>();
         //listOfMovies = loadMovies("data/ratedmovies_short.csv");
         listOfMovies = loadMovies("data/ratedmoviesfull.csv");
@@ -115,7 +125,7 @@ public class FirstRatings {
         } 
     }
 
-    public static void testLoadRaters() {
+    public void testLoadRaters() {
         
         int maxNumMoviesRated=0;
         ArrayList<Rater> listOfRaters= new ArrayList<Rater>();
@@ -188,10 +198,7 @@ public class FirstRatings {
         System.out.println("These raters rated "+String.valueOf(uniqueMovies.size())+" different movies");       
 
     }
-
-    public static void main(String[] args) {
-        testLoadMovies();
-        testLoadRaters();
-    }
     
 }
+
+
