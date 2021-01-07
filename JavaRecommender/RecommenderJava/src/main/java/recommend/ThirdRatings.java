@@ -1,17 +1,18 @@
 package recommend;
 import java.util.*;
-public class SecondRatings {
+
+public class ThirdRatings {
 
     private ArrayList<Movie> myMovies;
     private ArrayList<Rater> myRaters;
     
-    public SecondRatings() {
+    public ThirdRatings() {
         // default constructor
         this("data/ratedmoviesfull.csv", "data/ratings.csv");
         //this("data/ratedmovies_short.csv", "data/ratings_short.csv");
     }
 
-    public SecondRatings(String moviefile, String ratingsfile) {
+    public ThirdRatings(String moviefile, String ratingsfile) {
         FirstRatings rate = new FirstRatings();
         myMovies=rate.loadMovies(moviefile);
         myRaters= rate.loadRaters(ratingsfile);                
