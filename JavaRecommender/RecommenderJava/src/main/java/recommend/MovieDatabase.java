@@ -4,6 +4,7 @@ import org.apache.commons.csv.*;
 import edu.duke.FileResource;
 
 public class MovieDatabase {
+
     private static HashMap<String, Movie> ourMovies;
 
     public static void initialize(String moviefile) {
@@ -16,7 +17,8 @@ public class MovieDatabase {
     private static void initialize() {
         if (ourMovies == null) {
             ourMovies = new HashMap<String,Movie>();
-            loadMovies("data/ratedmoviesfull.csv");
+            loadMovies("data/ratedmovies_short.csv");
+            //ratedmovies_short.csv
         }
     }	
 
@@ -85,8 +87,7 @@ public class MovieDatabase {
             if (f.satisfies(id)) {
                 list.add(id);
             }
-        }
-        
+        }        
         return list;
     }
   

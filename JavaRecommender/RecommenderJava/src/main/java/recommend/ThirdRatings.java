@@ -3,23 +3,17 @@ import java.util.*;
 
 public class ThirdRatings {
 
-    private ArrayList<Movie> myMovies;
+    //private ArrayList<Movie> myMovies;
     private ArrayList<Rater> myRaters;
     
     public ThirdRatings() {
-        // default constructor
-        this("data/ratedmoviesfull.csv", "data/ratings.csv");
-        //this("data/ratedmovies_short.csv", "data/ratings_short.csv");
+        this("data/ratings.csv"); 
     }
 
-    public ThirdRatings(String moviefile, String ratingsfile) {
+    public ThirdRatings( String ratingsfile) {
         FirstRatings rate = new FirstRatings();
-        myMovies=rate.loadMovies(moviefile);
-        myRaters= rate.loadRaters(ratingsfile);                
-    }
-
-    public int getMovieSize() {
-        return myMovies.size();
+        myRaters= rate.loadRaters(ratingsfile);  
+                      
     }
 
     public int getRaterSize() {
@@ -53,10 +47,11 @@ public class ThirdRatings {
 
     public ArrayList<Rating> getAverageRatings(int minimalRaters) {
         ArrayList<Rating> ratingsList = new ArrayList<Rating>();
-        for (Movie m: myMovies) {
-            String movieID= m.getID();
-            double val = getAverageByID(movieID, minimalRaters);
-            Rating rating = new Rating (movieID, val);
+        ArrayList<String> movies = MovieDatabase.filterBy(new TrueFilter());
+        for (String m: movies) {
+            //String movieID= m.getID();
+            double val = getAverageByID(m, minimalRaters);
+            Rating rating = new Rating (m, val);
             if (val>0) {
                 ratingsList.add(rating);
             }
@@ -64,30 +59,19 @@ public class ThirdRatings {
         return ratingsList;
     }
 
-    public String getTitle(String ID) {
-        for (Movie m: myMovies) {
-            String movieID= m.getID();
-            String movieTitle=m.getTitle();
-            if (movieID.equals(ID)) {
-                return movieTitle;
+    public ArrayList<Rating>  getAverageRatingsByFilter(int minimalRaters,Filter filterCriteria) {
+        ArrayList<Rating> ratingsList = new ArrayList<Rating>();
+        ArrayList<String> movies = MovieDatabase.filterBy(filterCriteria);
+        for (String m: movies) {
+            //String movieID= m.getID();
+            double val = getAverageByID(m, minimalRaters);
+            Rating rating = new Rating (m, val);
+            if (val>0) {
+                ratingsList.add(rating);
             }
         }
-        return "MovieID "+ID+ " is not found";
+        return ratingsList;
     }
 
-    public String getID(String title) {
-        for (Movie m: myMovies) {
-            String movieID= m.getID();
-            String movieTitle=m.getTitle();
-            if (movieTitle.equals(title)) {
-                return movieID;
-            }
-        }
-        return "No such title found";
-    }
-
-
-
-    
     
 }
