@@ -19,7 +19,7 @@ public class Main {
         //mf.printAverageRatingsByGenre();
         //mf.printAverageRatingsByMinutes();
         //mf.printAverageRatingsByDirectors();
-        mf.printAverageRatingsByYearAfterAndGenre();
+        //mf.printAverageRatingsByYearAfterAndGenre();
         mf.printAverageRatingsByDirectorsAndMinutes();
 
     }

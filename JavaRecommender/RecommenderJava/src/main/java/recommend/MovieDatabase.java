@@ -1,7 +1,7 @@
 package recommend;
 import java.util.*;
-import org.apache.commons.csv.*;
-import edu.duke.FileResource;
+//import org.apache.commons.csv.*;
+//import edu.duke.FileResource;
 
 public class MovieDatabase {
 
@@ -17,8 +17,8 @@ public class MovieDatabase {
     private static void initialize() {
         if (ourMovies == null) {
             ourMovies = new HashMap<String,Movie>();
-            loadMovies("data/ratedmovies_short.csv");
-            //ratedmovies_short.csv
+            loadMovies("data/ratedmoviesfull.csv");
+            //loadMovies("data/ratedmovies_short.csv");
         }
     }	
 
