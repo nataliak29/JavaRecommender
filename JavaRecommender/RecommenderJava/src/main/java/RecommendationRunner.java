@@ -8,7 +8,7 @@ public class RecommendationRunner implements Recommender {
     public ArrayList<String> getItemsToRate() {
         ArrayList<String> moviesToDisplay= new ArrayList<String>();
         ArrayList<String> movies = MovieDatabase.filterBy(new TrueFilter());
-        int maxNumMovies=20;
+        int maxNumMovies=15;
         //Random rand = new Random();
 
         for (int i=0; i<maxNumMovies; i++) {
