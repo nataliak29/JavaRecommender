@@ -1,3 +1,4 @@
+package recommend;
 import java.util.*;
 
 
@@ -136,7 +137,7 @@ public class FourthRatings  {
     }
 
 
-    public ArrayList<Rating>  getSimilarRatings (String id, int numSimilaraters, int minimalRaters,Filter filterCriteria) {
+    public ArrayList<Rating>  getSimilarRatings (String id, int numSimilaraters, int minimalRaters) {
         return getSimilarRatingsByFilter ( id, numSimilaraters, minimalRaters,new TrueFilter());
 
     }
