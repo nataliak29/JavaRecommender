@@ -29,22 +29,28 @@ public class RecommendationRunner implements Recommender {
         if (list.size()< maxNumMovies) {
             maxNumMovies=list.size();
         }
+
         sb.append("<html>");
         sb.append("<head>");
         sb.append("<title>Recommender</title>");
         sb.append("<h1>Top 15 Recommended Movies</h1>");
-
         sb.append("<style>");
         sb.append("body {background-color: powderblue;text-align:center;}");
         sb.append("p {font: 15px Arial, sans-serif;}");
         sb.append("figure {margin:2px;display:inline-block;vertical-align:top;border:solid gray;}");
         sb.append("</style>");
         sb.append("</head>");
-
         sb.append("<div class='row'>");
         sb.append("<div class='column'>");
 
+        if (list.size()==0) {
+        sb.append("<p> Not enough movies rated to get recommendations. Please try again</p>");
+        }
+
+        else {
+
         for (int i=0; i<maxNumMovies; i++) {
+
             Rating r = list.get(i);
             Movie thisMovie=MovieDatabase.getMovie(r.getItem());
             String title =thisMovie.getTitle();
@@ -64,7 +70,7 @@ public class RecommendationRunner implements Recommender {
 
 
         }
-
+    }
 
         sb.append("</div>");
         sb.append("</body>");
