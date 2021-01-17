@@ -21,7 +21,6 @@ public class MovieDatabase {
             //loadMovies("data/ratedmovies_short.csv");
         }
     }	
-
 	
     private static void loadMovies(String filename) {
         FirstRatings fr = new FirstRatings();

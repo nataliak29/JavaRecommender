@@ -1,18 +1,10 @@
 package recommend;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class MovieRunnerAverage {
 
-    public int getSmallestRating(ArrayList<Rating> ratingsList , int from) {
-        int minIdx = from;
-        for (int i = from +1; i < ratingsList.size(); i++) {
-            if (ratingsList.get(i).getValue() < ratingsList.get(minIdx).getValue()) {
-                minIdx = i;
-            }
-        }
-        return minIdx;
-    }
     
     public void printAverageRatings() {
         //SecondRatings rate = new SecondRatings("data/ratedmoviesfull.csv", "data/ratings.csv");
@@ -24,15 +16,8 @@ public class MovieRunnerAverage {
         System.out.println(ratingsList);
         System.out.println("Number of movies with more than "+String.valueOf(numberOfRatings)+" ratings :"+String.valueOf(ratingsList.size()));
 
-        for(int i = 0; i < ratingsList.size(); i++) {
-            /* find the index of the smallest avg rating*/
-            int minIdx = getSmallestRating(ratingsList, i);
-            /* swap the ith avg rating with the minIdxth avg rating */
-            Rating qi = ratingsList.get(i);
-            Rating qmin = ratingsList.get(minIdx);
-            ratingsList.set(i, qmin);
-            ratingsList.set(minIdx, qi);
-        }
+        Collections.sort(ratingsList,Collections.reverseOrder());
+        
         for (Rating ratingItem : ratingsList) {
             String title =rate.getTitle(ratingItem.getItem());
             if (ratingItem.getValue()>0) {

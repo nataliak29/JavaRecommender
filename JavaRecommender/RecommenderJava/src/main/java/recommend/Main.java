@@ -13,14 +13,27 @@ public class Main {
         //ThirdRatings rate1 = new ThirdRatings();
         //System.out.println(rate1.getAverageRatings(50));
 
-        MovieRunnerWithFilters mf = new MovieRunnerWithFilters ();
+        //MovieRunnerWithFilters mf = new MovieRunnerWithFilters ();
         //mf.printAverageRatings();
         //mf.printAverageRatingsByYear();
         //mf.printAverageRatingsByGenre();
         //mf.printAverageRatingsByMinutes();
         //mf.printAverageRatingsByDirectors();
         //mf.printAverageRatingsByYearAfterAndGenre();
-        mf.printAverageRatingsByDirectorsAndMinutes();
+        //mf.printAverageRatingsByDirectorsAndMinutes();
+
+        MovieRunnerSimilarRatings mf=new MovieRunnerSimilarRatings();
+        //mf.printSimilarRatings();
+        //mf.printSimilarRatingsByGenre();
+        //mf.printSimilarRatingsByDirector();
+        //mf.printSimilarRatingsByGenreAndMinutes();
+        mf.printSimilarRatingsByYearAfterAndMinutes();
+
+        //FourthRatings rate = new FourthRatings();
+        //System.out.println(rate.getSimilarities("15"));
+
+
+
 
     }
 
