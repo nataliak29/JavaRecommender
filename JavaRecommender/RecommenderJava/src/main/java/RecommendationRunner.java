@@ -26,6 +26,9 @@ public class RecommendationRunner implements Recommender {
         int maxNumMovies=15;
         ArrayList<Rating> list =rate.getSimilarRatings(webRaterID, 5, 1); 
         StringBuilder sb = new StringBuilder();
+        if (list.size()< maxNumMovies) {
+            maxNumMovies=list.size();
+        }
         sb.append("<html>");
         sb.append("<head>");
         sb.append("<title>Recommender</title>");
