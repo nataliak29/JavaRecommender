@@ -23,30 +23,47 @@ public class RecommendationRunner implements Recommender {
     @Override
     public void printRecommendationsFor(String webRaterID) {
         FourthRatings rate = new FourthRatings();
-        int maxNumMovies=20;
-        //ArrayList<String> movies = MovieDatabase.filterBy(new TrueFilter());
+        int maxNumMovies=15;
         ArrayList<Rating> list =rate.getSimilarRatings(webRaterID, 5, 1); 
         StringBuilder sb = new StringBuilder();
         sb.append("<html>");
         sb.append("<head>");
+        sb.append("<title>Recommender</title>");
+        sb.append("<h1>Top 15 Recommended Movies</h1>");
+
         sb.append("<style>");
-        sb.append("body {background-color: powderblue;}");
-        sb.append("table, th, td { border: 1px solid black; }");
-        sb.append("table, td {font: 15px Arial, sans-serif;}");
-        sb.append("tr:hover {background-color: #f5f5f5;}");
+        sb.append("body {background-color: powderblue;text-align:center;}");
+        sb.append("p {font: 15px Arial, sans-serif;}");
+        sb.append("figure {margin:2px;display:inline-block;vertical-align:top;border:solid gray;}");
         sb.append("</style>");
         sb.append("</head>");
-        sb.append("<table>");
-        sb.append("<th> Top 20 Recommended Movies </th>");
+
+        sb.append("<div class='row'>");
+        sb.append("<div class='column'>");
+
         for (int i=0; i<maxNumMovies; i++) {
             Rating r = list.get(i);
-            String title =MovieDatabase.getTitle(r.getItem());
-            sb.append("<tr>");
-            sb.append("<td> " + title + " </td>");
-            sb.append("</tr>");
+            Movie thisMovie=MovieDatabase.getMovie(r.getItem());
+            String title =thisMovie.getTitle();
+            int year =thisMovie.getYear();
+            int minutes =thisMovie.getMinutes();
+            String country =thisMovie.getTitle();
+            String genre=thisMovie.getGenres();
+            String directors =thisMovie.getDirector();
+            String poster = "http://www.dukelearntoprogram.com/capstone/data/" + thisMovie.getPoster().substring(7);
+
+            sb.append("<figure>");
+            sb.append("<img src='"+poster+"'>");
+            sb.append("<figcaption>");
+            sb.append("<p>"+title+" ("+String.valueOf(year)+")"+"</p>");
+            sb.append("</figcaption>");
+            sb.append("</figure>");
+
+
         }
 
-        sb.append("</table>");
+
+        sb.append("</div>");
         sb.append("</body>");
         sb.append("</html>");
 
@@ -54,10 +71,4 @@ public class RecommendationRunner implements Recommender {
 
     }
 
-    public static void main(String[] args){
-        RecommendationRunner r = new RecommendationRunner();
-        System.out.println(r.getItemsToRate());
-        r.printRecommendationsFor("test");
-    }
-    
 }
