@@ -24,7 +24,16 @@ public class RecommendationRunner implements Recommender {
     public void printRecommendationsFor(String webRaterID) {
         FourthRatings rate = new FourthRatings();
         int maxNumMovies=15;
-        ArrayList<Rating> list =rate.getSimilarRatings(webRaterID, 5, 1); 
+        ArrayList<Rating> list =new ArrayList<Rating>(); 
+
+        try {
+            list= rate.getSimilarRatings(webRaterID, 5, 1);    
+            }
+             catch (Exception IndexOutOfBoundsException) {   
+            }
+            if (list.size()==0) {
+                System.out.println("No similar raters");
+            }
         StringBuilder sb = new StringBuilder();
         if (list.size()< maxNumMovies) {
             maxNumMovies=list.size();

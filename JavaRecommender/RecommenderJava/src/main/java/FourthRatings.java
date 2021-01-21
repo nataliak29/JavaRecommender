@@ -4,7 +4,7 @@ import java.util.*;
 public class FourthRatings  {
 
 	public FourthRatings () {
-        //this("data/ratings_quiz_week4.csv"); 
+        //this("data/ratings_short.csv"); 
         this("data/ratings.csv"); 
     }
 

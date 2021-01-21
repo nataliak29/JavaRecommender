@@ -64,8 +64,16 @@ public class MovieRunnerSimilarRatings {
         System.out.println("Number of raters in the file "+String.valueOf(rate.getRaterSize()));
         ArrayList<String> movies = MovieDatabase.filterBy(filter);
         System.out.println("Number of movies in the file "+String.valueOf(movies.size()));
+        ArrayList<Rating> ratingsList= new ArrayList<Rating>();
 
-        ArrayList<Rating> ratingsList= rate.getSimilarRatingsByFilter("71", 20, 5,filter);      
+        try {
+        ratingsList= rate.getSimilarRatingsByFilter("6", 20, 5,filter);     
+        }
+         catch (Exception IndexOutOfBoundsException) {   
+        }
+        if (ratingsList.size()==0) {
+            System.out.println("No similar raters");
+        }
 
         for (Rating ratingItem : ratingsList) {
             String title =MovieDatabase.getTitle(ratingItem.getItem());

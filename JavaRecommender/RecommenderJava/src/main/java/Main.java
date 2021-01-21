@@ -20,8 +20,8 @@ public class Main {
         //mf.printAverageRatingsByYearAfterAndGenre();
         //mf.printAverageRatingsByDirectorsAndMinutes();
 
-        //MovieRunnerSimilarRatings mf=new MovieRunnerSimilarRatings();
-        //mf.printSimilarRatings();
+        MovieRunnerSimilarRatings mf=new MovieRunnerSimilarRatings();
+        mf.printSimilarRatings();
         //mf.printSimilarRatingsByGenre();
         //mf.printSimilarRatingsByDirector();
         //mf.printSimilarRatingsByGenreAndMinutes();
@@ -30,11 +30,9 @@ public class Main {
         //FourthRatings rate = new FourthRatings();
         //System.out.println(rate.getSimilarities("15"));
 
-        RecommendationRunner rr= new RecommendationRunner();
-
-
-        System.out.println(rr.getItemsToRate());
-        rr.printRecommendationsFor("314");
+        //RecommendationRunner rr= new RecommendationRunner();
+        //System.out.println(rr.getItemsToRate());
+        //rr.printRecommendationsFor("314");
 
 
 
